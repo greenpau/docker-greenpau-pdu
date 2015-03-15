@@ -40,7 +40,7 @@ docker exec -it ${APS1_DOCKER_CONTAINER} /bin/bash
 When necessary, stop the container and delete it from the system:
 ```
 APS1_DOCKER_IMAGE=`docker images | grep greenpau/pdu | tr -s ' ' | cut -d" " -f3 | xargs`
-docker stop $(docker ps -a | grep aps01 | tr -s ' ' | cut -d" " -f1 | xargs)
+docker stop $(docker ps -a | grep aps1 | tr -s ' ' | cut -d" " -f1 | xargs)
 docker rm $(docker ps -a | grep aps1 | tr -s ' ' | cut -d" " -f1 | xargs)
 ```
 
@@ -56,9 +56,9 @@ docker build --force-rm=true -t greenpau/pdu - < Dockerfile
 
 If necessary to start with a clean sheet:
 ```
-docker stop
+docker stop `docker ps -a | tr -s ' ' | cut -d" " -f1 | xargs`
 docker rmi $(docker images | tr -s ' ' | cut -d" " -f3 | xargs)
-docker images -i
+docker images -a
 ```
 
 ## uWSGI
