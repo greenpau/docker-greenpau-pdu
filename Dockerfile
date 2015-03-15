@@ -55,6 +55,6 @@ RUN ${APP_ROOT}/bin/pip3 install lxml==3.4.1 && \
 
 RUN echo "def application(env, start_response):" > /tmp/uwsgi_status.py && \
     echo "    start_response('200 OK', [('Content-Type','text/html')])" >> /tmp/uwsgi_status.py && \
-    echo "    return [\"uWSGI is up and running\\n\"]" >> /tmp/uwsgi_status.py
+    echo "    return [\"uWSGI is up and running\\\\n\"]" >> /tmp/uwsgi_status.py
 
 EXPOSE 8080

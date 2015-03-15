@@ -17,7 +17,11 @@ docker pull greenpau/pdu
 Run `aps1` application container using the following commands:
 ```
 APS1_DOCKER_IMAGE=`docker images | grep greenpau/pdu | tr -s ' ' | cut -d" " -f3 | xargs`
+docker stop $(docker ps -a | grep aps01 | tr -s ' ' | cut -d" " -f1 | xargs)
+docker rm $(docker ps -a | grep aps1 | tr -s ' ' | cut -d" " -f1 | xargs)
 docker run -d --name aps1 --hostname=aps1 -t ${APS1_DOCKER_IMAGE}
+APS1_DOCKER_CONTAINER=`docker ps -a | grep greenpau/pdu | grep aps1 | tr -s ' ' | cut -d" " -f1 | xargs`
+docker exec -d -t ${APS1_DOCKER_CONTAINER} uwsgi --http :9090 --wsgi-file /tmp/uwsgi_status.py
 ```
 
 Validate the container is up and running from the host:
@@ -35,7 +39,9 @@ docker exec -it ${APS1_DOCKER_CONTAINER} /bin/bash
 
 When necessary, stop the container and delete it from the system:
 ```
-
+APS1_DOCKER_IMAGE=`docker images | grep greenpau/pdu | tr -s ' ' | cut -d" " -f3 | xargs`
+docker stop $(docker ps -a | grep aps01 | tr -s ' ' | cut -d" " -f1 | xargs)
+docker rm $(docker ps -a | grep aps1 | tr -s ' ' | cut -d" " -f1 | xargs)
 ```
 
 ## Dockerfile
