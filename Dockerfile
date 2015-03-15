@@ -10,7 +10,7 @@ RUN apt-get -y install gcc-4.7 g++-4.7 \
     libxslt1.1 openssl nano wget make libbz2-dev libbz2-1.0 lzma lzma-dev \
     liblzma5 liblzma-dev libssl-dev libssl1.0.0 file libpcre3 libpcre3-dev \
     libjson0 libjson0-dev libpq-dev libyaml-dev procps net-tools apt-utils \
-    libjansson4 libjansson-dev install libcap2 libcap-dev lsof
+    libjansson4 libjansson-dev libcap2 libcap-dev lsof
 
 RUN ln -s /usr/bin/gcc-4.7 /usr/bin/gcc
 RUN ln -s /usr/bin/g++-4.7 /usr/bin/g++

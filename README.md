@@ -43,9 +43,16 @@ When necessary, stop the container and delete it from the system:
 If a user is interested in building an image, the user may run:
 
 ```
-git clone git@github.com:greenpau/docker-greenpau-pdu.git
+git clone https://github.com/greenpau/docker-greenpau-pdu.git
 cd docker-greenpau-pdu
 docker build --force-rm=true -t greenpau/pdu - < Dockerfile
+```
+
+If necessary to start with a clean sheet:
+```
+docker stop
+docker rmi $(docker images | tr -s ' ' | cut -d" " -f3 | xargs)
+docker images -i
 ```
 
 ## uWSGI
