@@ -32,6 +32,13 @@ APS1_DOCKER_CONTAINER_IPV4=`docker exec -it ${APS1_DOCKER_CONTAINER} ip -f inet 
 curl http://${APS1_DOCKER_CONTAINER_IPV4}:9090
 ```
 
+The expected result is:
+```
+core@ip-172-31-24-111 ~ $ curl http://${APS1_DOCKER_CONTAINER_IPV4}:9090
+uWSGI is up and running
+core@ip-172-31-24-111 ~ $
+```
+
 Interact with the container:
 ```
 APS1_DOCKER_CONTAINER=`docker ps -a | grep greenpau/pdu | grep aps1 | tr -s ' ' | cut -d" " -f1 | xargs`
@@ -47,7 +54,8 @@ docker rm $(docker ps -a | grep aps1 | tr -s ' ' | cut -d" " -f1 | xargs)
 
 ## Dockerfile
 
-If a user is interested in building an image, the user may run:
+If a user is interested in building an image, the user may use or reference
+[Dockerfile](https://raw.githubusercontent.com/greenpau/docker-greenpau-pdu/master/Dockerfile):
 
 ```
 git clone https://github.com/greenpau/docker-greenpau-pdu.git
