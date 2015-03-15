@@ -21,6 +21,7 @@ docker stop $(docker ps -a | grep aps01 | tr -s ' ' | cut -d" " -f1 | xargs)
 docker rm $(docker ps -a | grep aps1 | tr -s ' ' | cut -d" " -f1 | xargs)
 docker run -d --name aps1 --hostname=aps1 -t ${APS1_DOCKER_IMAGE}
 APS1_DOCKER_CONTAINER=`docker ps -a | grep greenpau/pdu | grep aps1 | tr -s ' ' | cut -d" " -f1 | xargs`
+docker exec -i -t ${APS1_DOCKER_CONTAINER} cat /tmp/uwsgi_status.py
 docker exec -d -t ${APS1_DOCKER_CONTAINER} uwsgi --http :9090 --wsgi-file /tmp/uwsgi_status.py
 ```
 
